@@ -11,9 +11,14 @@ namespace ToDo.API.Controllers
 		}
 
 		[HttpGet]
-		public IActionResult Get()
+		public IActionResult GetAllToDoLists()
 		{
-			return Ok("I passed");
+			return Ok("Getting all Lists");
+		}
+
+		[HttpGet("GetToDoList/{id}")]
+		public IActionResult GetToDoList(int id) {
+			return Ok("Getting list");
 		}
 	}
 }
