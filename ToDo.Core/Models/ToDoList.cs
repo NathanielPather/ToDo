@@ -3,6 +3,5 @@
 	public class ToDoList : BaseModel
 	{
 		public string Name { get; set; }
-		public bool Secure { get; set; }
 	}
 }

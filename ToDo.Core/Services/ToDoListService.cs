@@ -1,4 +1,5 @@
 ﻿using ToDo.Core.Interfaces;
+using ToDo.Core.Models;
 
 namespace ToDo.Core.Services
 {
@@ -6,22 +7,23 @@ namespace ToDo.Core.Services
 	{
 		public bool CreateToDoList()
 		{
-			throw new System.NotImplementedException();
+			ToDoList list = new ToDoList();
+
 		}
 
 		public bool DeleteToDoList()
 		{
-			throw new System.NotImplementedException();
+			throw new NotImplementedException();
 		}
 
 		public bool GetToDoList()
 		{
-			throw new System.NotImplementedException();
+			throw new NotImplementedException();
 		}
 
 		public bool UpdateToDoList()
 		{
-			throw new System.NotImplementedException();
+			throw new NotImplementedException();
 		}
 	}
 }
