@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using ToDo.Core.Models;
 
 namespace ToDo.API.Controllers
 {
@@ -6,8 +7,10 @@ namespace ToDo.API.Controllers
 	[Route("[controller]")]
 	public class ToDoListController : ControllerBase
 	{
-		public ToDoListController()
+		private readonly IToDoListService _toDoListService;
+		public ToDoListController(IToDoListService toDoListService)
 		{
+			_toDoListService = toDoListService;
 		}
 
 		[HttpGet]
@@ -19,6 +22,12 @@ namespace ToDo.API.Controllers
 		[HttpGet("GetToDoList/{id}")]
 		public IActionResult GetToDoList(int id) {
 			return Ok("Getting list");
+		}
+
+		[HttpPost("CreateToDoList")]
+		public IActionResult CreateToDoList(ToDoList toDoList)
+		{
+			return Ok("Created");
 		}
 	}
 }
