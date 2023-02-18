@@ -1,8 +1,9 @@
 ﻿using ToDo.Core.Models;
+using ToDo.Infrastructure.Interfaces;
 
 namespace ToDo.Infrastructure.Repositories
 {
-	public class ToDoListRepository
+	public class ToDoListRepository : IToDoListRepository
 	{
 		private readonly Context _context;
 		public ToDoListRepository(Context context) {

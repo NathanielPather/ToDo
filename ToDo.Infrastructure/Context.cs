@@ -8,6 +8,9 @@ namespace ToDo.Infrastructure
 		public Context() {
 		}
 
+		public Context(DbContextOptions<Context> options) : base(options) { 
+		}
+
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
 			optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=master;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");

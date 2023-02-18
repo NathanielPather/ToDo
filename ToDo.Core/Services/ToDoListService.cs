@@ -1,13 +1,21 @@
 ﻿using ToDo.Core.Interfaces;
 using ToDo.Core.Models;
+using ToDo.Infrastructure.Interfaces;
 
 namespace ToDo.Core.Services
 {
 	public class ToDoListService : IToDoListService
 	{
+		private readonly IToDoListRepository _toDoListRepository;
+		public ToDoListService(IToDoListRepository toDoListRepository) {
+			_toDoListRepository = toDoListRepository;
+		}
+
 		public bool CreateToDoList()
 		{
 			ToDoList list = new ToDoList();
+			_toDoListRepository.CreateToDoList(list);
+			return true;
 
 		}
 
