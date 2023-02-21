@@ -2,7 +2,7 @@
 {
 	public interface IToDoListService
 	{
-		bool CreateToDoList();
+		bool CreateToDoList(string name);
 		bool GetToDoList();
 		bool UpdateToDoList();
 		bool DeleteToDoList();

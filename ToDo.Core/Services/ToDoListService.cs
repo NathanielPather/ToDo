@@ -11,15 +11,13 @@ namespace ToDo.Core.Services
 			_toDoListRepository = toDoListRepository;
 		}
 
-		public bool CreateToDoList()
+		public bool CreateToDoList(string name)
 		{
 			ToDoList list = new ToDoList
 			{
-				Name = "testerino"
+				Name = name
 			};
-			_toDoListRepository.CreateToDoList(list);
-			return true;
-
+			return _toDoListRepository.CreateToDoList(list);
 		}
 
 		public bool DeleteToDoList()

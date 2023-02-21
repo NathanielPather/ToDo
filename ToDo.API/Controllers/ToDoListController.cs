@@ -25,10 +25,14 @@ namespace ToDo.API.Controllers
 		}
 
 		[HttpPost("CreateToDoList")]
-		public IActionResult CreateToDoList()
+		public IActionResult CreateToDoList(string name)
 		{
-			_toDoListService.CreateToDoList();
-			return Ok("Created");
+			if(_toDoListService.CreateToDoList(name))
+			{
+				return Ok("ToDoList created");
+			}
+
+			return BadRequest("Something went wrong");
 		}
 	}
 }
