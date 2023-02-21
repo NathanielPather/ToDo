@@ -7,7 +7,6 @@ namespace ToDo.Infrastructure
 	{
 		public Context(DbContextOptions<Context> options) : base(options) { 
 		}
-
 		public DbSet<ToDoList> ToDoLists { get; set; }
 	}
 }
