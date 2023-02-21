@@ -13,7 +13,10 @@ namespace ToDo.Core.Services
 
 		public bool CreateToDoList()
 		{
-			ToDoList list = new ToDoList();
+			ToDoList list = new ToDoList
+			{
+				Name = "testerino"
+			};
 			_toDoListRepository.CreateToDoList(list);
 			return true;
 
