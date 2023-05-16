@@ -1,5 +1,11 @@
-export default function Home() {
+import ToDoLists from "./components/ToDoLists";
+
+export default async function Home() {
 	return (
-		<div>Hello World</div>
+		<div>
+			<ToDoLists />
+		</div>
 	)
 }
+
+
