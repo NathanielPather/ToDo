@@ -9,7 +9,16 @@ const theme = createTheme({
 					background: green[500]
 				}
 			}
+		},
+		MuiAccordionSummary: {
+			styleOverrides: {
+				content: {
+					display: "flex",
+					justifyContent: "space-between"
+				}
+			}
 		}
+
 	}
 });
 

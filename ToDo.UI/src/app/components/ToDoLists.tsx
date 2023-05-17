@@ -11,14 +11,15 @@ function CreateToDoListElements() {
 	const lists: ToDoList[] = GetLists();
 
 	if (lists.length > 0) {
-		lists.map((list) => {
+		lists.map((list, index) => {
 			HTMLElement.push(
-				<ThemeProvider theme={theme}>
-					<Accordion>
+				<ThemeProvider theme={theme} key={index}>
+					<Accordion square={true}>
 						<AccordionSummary
 							aria-controls="panel1a-content"
 							id="panel1a-header">
-							{list.name} {list.completed}/{list.totalTasks} {list.resetTimer}
+								<div>{list.name}</div>
+								<div>{list.completed}/{list.totalTasks} {list.resetTimer}</div>
 						</AccordionSummary>
 						<AccordionDetails>
 							TODO
