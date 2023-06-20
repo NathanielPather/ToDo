@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ToDo.Core.Interfaces;
+using ToDo.Core.Models;
 
 namespace ToDo.API.Controllers
 {
@@ -25,9 +26,9 @@ namespace ToDo.API.Controllers
 		}
 
 		[HttpPost("CreateToDoList")]
-		public IActionResult CreateToDoList(string name)
+		public IActionResult CreateToDoList(ToDoList list)
 		{
-			if(_toDoListService.CreateToDoList(name))
+			if(_toDoListService.CreateToDoList(list.Name))
 			{
 				return Ok("ToDoList created");
 			}
