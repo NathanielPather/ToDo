@@ -5,9 +5,14 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDo.API", "ToDo.API\ToDo.API.csproj", "{ECEDFD44-D151-434E-9831-5EC6C4F640C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDo.Core", "ToDo.Core\ToDo.Core.csproj", "{A4C32199-16C3-4D39-9FA4-86D27D780C16}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDo.Core", "ToDo.Core\ToDo.Core.csproj", "{A4C32199-16C3-4D39-9FA4-86D27D780C16}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDo.Infrastructure", "ToDo.Infrastructure\ToDo.Infrastructure.csproj", "{ED5B1044-3749-4991-9095-0E7C0D571BF8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDo.Infrastructure", "ToDo.Infrastructure\ToDo.Infrastructure.csproj", "{ED5B1044-3749-4991-9095-0E7C0D571BF8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDo.API.Tests", "ToDo.API.Tests\ToDo.API.Tests.csproj", "{2692316E-B557-456C-9646-B12EAB64F17C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{ECEDFD44-D151-434E-9831-5EC6C4F640C1} = {ECEDFD44-D151-434E-9831-5EC6C4F640C1}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +32,10 @@ Global
 		{ED5B1044-3749-4991-9095-0E7C0D571BF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED5B1044-3749-4991-9095-0E7C0D571BF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED5B1044-3749-4991-9095-0E7C0D571BF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2692316E-B557-456C-9646-B12EAB64F17C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2692316E-B557-456C-9646-B12EAB64F17C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2692316E-B557-456C-9646-B12EAB64F17C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2692316E-B557-456C-9646-B12EAB64F17C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
