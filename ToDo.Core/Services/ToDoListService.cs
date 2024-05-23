@@ -1,4 +1,5 @@
-﻿using ToDo.Core.Interfaces;
+﻿using System.Data;
+using ToDo.Core.Interfaces;
 using ToDo.Core.Models;
 using ToDo.Infrastructure.Interfaces;
 
@@ -17,6 +18,12 @@ namespace ToDo.Core.Services
 			{
 				Name = name
 			};
+
+			if (_toDoListRepository.GetToDoListByName(list.Name) is not null)
+			{
+				throw new DuplicateNameException();
+			}
+
 			return _toDoListRepository.CreateToDoList(list);
 		}
 
@@ -25,7 +32,12 @@ namespace ToDo.Core.Services
 			throw new NotImplementedException();
 		}
 
-		public bool GetToDoList()
+        public bool GetToDoList()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool GetToDoListByName()
 		{
 			throw new NotImplementedException();
 		}

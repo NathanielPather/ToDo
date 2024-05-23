@@ -2,21 +2,21 @@ import { MyList } from "./MyList";
 
 const api = `https://localhost:7004/`;
 
-const lists: ToDoList[] = [
+const localListMock: ToDoList[] = [
 	{
-		name: "work",
+		name: "Work Tasks",
 		completed: 2,
 		totalTasks: 5,
 		resetTimer: "13:23:25"
 	},
 	{
-		name: "Music",
+		name: "Home Tasks",
 		completed: 2,
 		totalTasks: 5,
 		resetTimer: "13:23:25"
 	},
 	{
-		name: "League",
+		name: "Personal Project Tasks",
 		completed: 2,
 		totalTasks: 5,
 		resetTimer: "13:23:25"
@@ -24,7 +24,7 @@ const lists: ToDoList[] = [
 ]
 
 export function GetLists() {
-	return lists;
+	return localListMock;
 }
 
 
@@ -42,5 +42,9 @@ export const CreateList = async (newList: MyList) => {
 	if(response.status == 200) {
 		const content = await response.text();
 		console.log(content);
+	}
+	else {
+		const content = await response.text();
+		console.log(content)
 	}
 }

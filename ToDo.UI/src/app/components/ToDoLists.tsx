@@ -13,19 +13,19 @@ function CreateToDoListElements() {
 	if (lists.length > 0) {
 		lists.map((list, index) => {
 			HTMLElement.push(
-				<ThemeProvider theme={theme} key={index}>
-					<Accordion square={true}>
+				<Accordion square={true} key={index}>
+					<ThemeProvider theme={theme}>
 						<AccordionSummary
 							aria-controls="panel1a-content"
 							id="panel1a-header">
-								<div>{list.name}</div>
+								<div style={{fontFamily: 'roboto'}}>{list.name}</div>
 								<div>{list.completed}/{list.totalTasks} {list.resetTimer}</div>
 						</AccordionSummary>
+					</ThemeProvider>
 						<AccordionDetails>
 							TODO
 						</AccordionDetails>
-					</Accordion>
-				</ThemeProvider>
+				</Accordion>
 			);
 		});
 
@@ -38,7 +38,6 @@ function CreateToDoListElements() {
 function ToDoLists() {
 	return (
 		<div>
-			<h1>ToDoLists</h1>
 			{CreateToDoListElements()}
 		</div>
 	);
