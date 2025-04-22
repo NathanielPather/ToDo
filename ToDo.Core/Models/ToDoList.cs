@@ -2,6 +2,9 @@
 {
 	public class ToDoList : BaseModel
 	{
-		public string? Name { get; set; }
-	}
+        public required string Name { get; set; }
+        public TimeSpan? Duration { get; set; }
+		public bool? Repeating { get; set; }
+
+    }
 }

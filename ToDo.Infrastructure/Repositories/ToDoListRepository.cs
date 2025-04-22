@@ -22,5 +22,14 @@ namespace ToDo.Infrastructure.Repositories
 
 			return true;
 		}
-	}
+
+        public ToDoList? GetToDoListByName(string name)
+        {
+            // Microsoft.Data.SqlClient.SqlException: 'Invalid object name 'ToDoLists'.'
+			// Because the migrations haven't run, there are no objects in the database called ToDoLists
+			// ToDoLists is the main database parent object
+			// Update Database
+            return _context.ToDoLists.FirstOrDefault(toDoList => toDoList.Name.Equals(name));
+        }
+    }
 }

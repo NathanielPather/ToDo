@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 using ToDo.Core.Interfaces;
 using ToDo.Core.Models;
 
@@ -28,10 +29,17 @@ namespace ToDo.API.Controllers
 		[HttpPost("CreateToDoList")]
 		public IActionResult CreateToDoList(ToDoList list)
 		{
-			if(_toDoListService.CreateToDoList(list.Name))
+			try
 			{
-				return Ok("ToDoList created");
+				if(_toDoListService.CreateToDoList(list.Name))
+				{
+					return Ok("ToDoList created");
+				}
 			}
+			catch (DuplicateNameException ex)
+			{
+				return BadRequest("ToDoList name already exists.");
+            }
 
 			return BadRequest("Something went wrong");
 		}
