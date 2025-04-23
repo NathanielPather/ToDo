@@ -21,7 +21,7 @@ builder.Services.AddScoped<IToDoListService, ToDoListService>();
 builder.Services.AddScoped<IToDoListRepository, ToDoListRepository>();
 
 
-
+var suminTest = true;
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
