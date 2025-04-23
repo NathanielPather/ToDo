@@ -5,10 +5,10 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import { ThemeProvider } from "@emotion/react";
 import theme from "../themes/theme";
+import { useEffect, useState } from "react";
 
-function CreateToDoListElements() {
+function CreateToDoListElements(lists: ToDoList[]) {
 	let HTMLElement: React.JSX.Element[] = [];
-	const lists: ToDoList[] = GetLists();
 
 	if (lists.length > 0) {
 		lists.map((list, index) => {
@@ -19,7 +19,8 @@ function CreateToDoListElements() {
 							aria-controls="panel1a-content"
 							id="panel1a-header">
 								<div style={{fontFamily: 'roboto'}}>{list.name}</div>
-								<div>{list.completed}/{list.totalTasks} {list.resetTimer}</div>
+								{/* TODO: Adjust this to match ToDoList model */}
+								{/* <div>{list.completed}/{list.totalTasks} {list.resetTimer}</div> */}
 						</AccordionSummary>
 					</ThemeProvider>
 						<AccordionDetails>
@@ -36,9 +37,19 @@ function CreateToDoListElements() {
 }
 
 function ToDoLists() {
+	const [lists, setLists ]= useState<ToDoList[]>([])
+	useEffect(() => {
+		const loadLists = async () => {
+			const data = await GetLists();
+			setLists(data);
+		};
+
+		loadLists();
+	}, []);
+
 	return (
 		<div>
-			{CreateToDoListElements()}
+			{CreateToDoListElements(lists)}
 		</div>
 	);
 }

@@ -31,5 +31,10 @@ namespace ToDo.Infrastructure.Repositories
 			// Update Database
             return _context.ToDoLists.FirstOrDefault(toDoList => toDoList.Name.Equals(name));
         }
+
+		public IEnumerable<ToDoList> GetToDoLists()
+		{
+			return _context.ToDoLists.ToList();
+		}
     }
 }

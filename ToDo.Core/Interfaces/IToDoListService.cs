@@ -1,8 +1,11 @@
-﻿namespace ToDo.Core.Interfaces
+﻿using ToDo.Core.Models;
+
+namespace ToDo.Core.Interfaces
 {
 	public interface IToDoListService
 	{
-		bool CreateToDoList(string name);
+        IEnumerable<ToDoList> GetToDoLists();
+        bool CreateToDoList(string name);
 		bool GetToDoList();
 		bool UpdateToDoList();
 		bool DeleteToDoList();

@@ -6,5 +6,6 @@ namespace ToDo.Infrastructure.Interfaces
 	{
 		bool CreateToDoList(ToDoList list);
 		ToDoList? GetToDoListByName(string name);
+		IEnumerable<ToDoList> GetToDoLists();
 	}
 }

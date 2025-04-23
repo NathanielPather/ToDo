@@ -26,6 +26,10 @@ namespace ToDo.Core.Services
 
 			return _toDoListRepository.CreateToDoList(list);
 		}
+		public IEnumerable<ToDoList> GetToDoLists()
+		{
+			return _toDoListRepository.GetToDoLists();
+		}
 
 		public bool DeleteToDoList()
 		{

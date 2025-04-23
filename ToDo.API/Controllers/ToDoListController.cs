@@ -15,11 +15,12 @@ namespace ToDo.API.Controllers
 			_toDoListService = toDoListService;
 		}
 
-		[HttpGet]
-		public IActionResult GetAllToDoLists()
+        [HttpGet("GetToDoLists")]
+        public IActionResult GetAllToDoLists()
 		{
-			return Ok("Getting all Lists");
-		}
+			var toDoLists = _toDoListService.GetToDoLists();
+			return Ok(toDoLists);
+        }
 
 		[HttpGet("GetToDoList/{id}")]
 		public IActionResult GetToDoList(int id) {
