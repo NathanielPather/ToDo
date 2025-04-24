@@ -45,7 +45,7 @@ function ToDoLists() {
 		};
 
 		loadLists();
-	}, []);
+	}, [lists]);
 
 	return (
 		<div>
