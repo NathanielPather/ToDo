@@ -5,7 +5,7 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import { ThemeProvider } from "@emotion/react";
 import theme from "../themes/theme";
-import { useEffect, useState } from "react";
+import { useQuery} from "@tanstack/react-query";
 
 function CreateToDoListElements(lists: ToDoList[]) {
 	let HTMLElement: React.JSX.Element[] = [];
@@ -37,15 +37,15 @@ function CreateToDoListElements(lists: ToDoList[]) {
 }
 
 function ToDoLists() {
-	const [lists, setLists ]= useState<ToDoList[]>([])
-	useEffect(() => {
-		const loadLists = async () => {
-			const data = await GetLists();
-			setLists(data);
-		};
+	const { data: lists = [], isLoading, isError } = useQuery({
+		queryKey: ['todoLists'],
+		queryFn: () => {
+			return GetLists();
+		},
+	});
 
-		loadLists();
-	}, [lists]);
+	if (isLoading) return <div>Loading...</div>;
+	if (isError) return <div>Error loading to-do lists.</div>;
 
 	return (
 		<div>

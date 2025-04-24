@@ -7,7 +7,7 @@ import { ThemeProvider } from "@emotion/react";
 import theme from "./themes/theme";
 import CreateToDoListDialog from "./components/CreateToDoListDialog";
 import { useState } from "react";
-
+import { useQueryClient, useMutation } from "@tanstack/react-query";
 function OnSave(newListName: string) {
 	const newList = new MyList(newListName);
 	CreateList(newList);
@@ -22,7 +22,19 @@ function OnSave(newListName: string) {
 // The component returns a promise, react waits ...
 // Infinite loop
 export default function Home() {
-const [open, setOpen] = useState(false)
+	const [open, setOpen] = useState(false)
+	const queryClient = useQueryClient();
+
+	const createMutation = useMutation({
+		mutationFn: CreateList,
+		onSuccess: () => {
+			queryClient.invalidateQueries({ queryKey: ['todoLists'] });
+		},
+	});
+
+	const handleSave = (listName: string) => {
+		createMutation.mutate({ name: listName });
+	};
 
 	return (
 		<div>
@@ -35,7 +47,7 @@ const [open, setOpen] = useState(false)
 				</div>
 				<ToDoLists />
 			</ThemeProvider>
-			<CreateToDoListDialog isOpen={open} onSave={OnSave} onClose={() => setOpen(false)} />
+			<CreateToDoListDialog isOpen={open} onSave={handleSave} onClose={() => setOpen(false)} />
 		</div>
 	)
 }
