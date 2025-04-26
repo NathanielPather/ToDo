@@ -8,10 +8,6 @@ import theme from "./themes/theme";
 import CreateToDoListDialog from "./components/CreateToDoListDialog";
 import { useState } from "react";
 import { useQueryClient, useMutation } from "@tanstack/react-query";
-function OnSave(newListName: string) {
-	const newList = new MyList(newListName);
-	CreateList(newList);
-}
 
 // All component functions must be non async
 // Async functions cause infinite re-renders
@@ -25,16 +21,15 @@ export default function Home() {
 	const [open, setOpen] = useState(false)
 	const queryClient = useQueryClient();
 
+	function OnSave(listName: string) {
+		createMutation.mutate({ name: listName });
+	}
 	const createMutation = useMutation({
 		mutationFn: CreateList,
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ['todoLists'] });
 		},
 	});
-
-	const handleSave = (listName: string) => {
-		createMutation.mutate({ name: listName });
-	};
 
 	return (
 		<div>
@@ -47,7 +42,7 @@ export default function Home() {
 				</div>
 				<ToDoLists />
 			</ThemeProvider>
-			<CreateToDoListDialog isOpen={open} onSave={handleSave} onClose={() => setOpen(false)} />
+			<CreateToDoListDialog isOpen={open} onSave={OnSave} onClose={() => setOpen(false)} />
 		</div>
 	)
 }
