@@ -7,11 +7,7 @@ import { ThemeProvider } from "@emotion/react";
 import theme from "./themes/theme";
 import CreateToDoListDialog from "./components/CreateToDoListDialog";
 import { useState } from "react";
-
-function OnSave(newListName: string) {
-	const newList = new MyList(newListName);
-	CreateList(newList);
-}
+import { useQueryClient, useMutation } from "@tanstack/react-query";
 
 // All component functions must be non async
 // Async functions cause infinite re-renders
@@ -22,7 +18,18 @@ function OnSave(newListName: string) {
 // The component returns a promise, react waits ...
 // Infinite loop
 export default function Home() {
-const [open, setOpen] = useState(false)
+	const [open, setOpen] = useState(false)
+	const queryClient = useQueryClient();
+
+	function OnSave(listName: string) {
+		createMutation.mutate({ name: listName });
+	}
+	const createMutation = useMutation({
+		mutationFn: CreateList,
+		onSuccess: () => {
+			queryClient.invalidateQueries({ queryKey: ['todoLists'] });
+		},
+	});
 
 	return (
 		<div>
