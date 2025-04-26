@@ -36,5 +36,26 @@ namespace ToDo.Infrastructure.Repositories
 		{
 			return _context.ToDoLists.ToList();
 		}
+
+        public bool DeleteToDoList(int id) 
+        {
+            var toDoList = _context.ToDoLists.FirstOrDefault(x => x.Id == id);
+            if (toDoList == null)
+            {
+                return false;
+            }
+
+            _context.ToDoLists.Remove(toDoList);
+
+            try
+            {
+                _context.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

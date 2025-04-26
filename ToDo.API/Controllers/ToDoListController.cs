@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
 using ToDo.Core.Interfaces;
@@ -44,5 +45,26 @@ namespace ToDo.API.Controllers
 
 			return BadRequest("Something went wrong");
 		}
-	}
+
+        [HttpDelete("DeleteToDoList/{id}")]
+        public IActionResult DeleteToDoList(int id)
+        {
+            try
+            {
+                var isDeleted = _toDoListService.DeleteToDoList(id);
+                if (isDeleted)
+                {
+                    return Ok("ToDoList deleted successfully.");
+                }
+                else
+                {
+                    return NotFound("ToDoList not found.");
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "An error occurred while deleting the ToDoList.");
+            }
+        }
+    }
 }
