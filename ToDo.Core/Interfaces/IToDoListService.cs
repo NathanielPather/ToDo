@@ -8,6 +8,6 @@ namespace ToDo.Core.Interfaces
         bool CreateToDoList(string name);
 		bool GetToDoList();
 		bool UpdateToDoList();
-		bool DeleteToDoList();
+		bool DeleteToDoList(int id);
 	}
 }

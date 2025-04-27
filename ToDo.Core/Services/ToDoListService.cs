@@ -31,9 +31,9 @@ namespace ToDo.Core.Services
 			return _toDoListRepository.GetToDoLists();
 		}
 
-		public bool DeleteToDoList()
+		public bool DeleteToDoList(int id)
 		{
-			throw new NotImplementedException();
+			return _toDoListRepository.DeleteToDoList(id);
 		}
 
         public bool GetToDoList()
