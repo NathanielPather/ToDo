@@ -11,7 +11,6 @@ namespace ToDo.Core.Services
 		public ToDoListService(IToDoListRepository toDoListRepository) {
 			_toDoListRepository = toDoListRepository;
 		}
-
 		public bool CreateToDoList(string name)
 		{
 			ToDoList list = new ToDoList
@@ -26,29 +25,43 @@ namespace ToDo.Core.Services
 
 			return _toDoListRepository.CreateToDoList(list);
 		}
+
 		public IEnumerable<ToDoList> GetToDoLists()
 		{
 			return _toDoListRepository.GetToDoLists();
 		}
+        public ToDoList? GetToDoList(int id)
+        {
+            return _toDoListRepository.GetToDoList(id);
+        }
 
 		public bool DeleteToDoList(int id)
 		{
 			return _toDoListRepository.DeleteToDoList(id);
 		}
 
-        public bool GetToDoList()
-        {
-            throw new NotImplementedException();
-        }
 
         public bool GetToDoListByName()
 		{
 			throw new NotImplementedException();
 		}
 
-		public bool UpdateToDoList()
+		public bool UpdateToDoList(int id, string newName)
 		{
-			throw new NotImplementedException();
+			var toDoList = _toDoListRepository.GetToDoList(id);
+			if (toDoList == null)
+			{
+				return false;
+			}
+
+			var existingList = _toDoListRepository.GetToDoListByName(newName);
+			if (existingList != null && existingList.Id != id)
+			{
+				throw new DuplicateNameException();
+			}
+
+			toDoList.Name = newName;
+			return _toDoListRepository.UpdateToDoList(toDoList);
 		}
 	}
 }

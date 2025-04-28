@@ -4,10 +4,10 @@ namespace ToDo.Core.Interfaces
 {
 	public interface IToDoListService
 	{
-        IEnumerable<ToDoList> GetToDoLists();
         bool CreateToDoList(string name);
-		bool GetToDoList();
-		bool UpdateToDoList();
+        IEnumerable<ToDoList> GetToDoLists();
+        ToDoList? GetToDoList(int id);
 		bool DeleteToDoList(int id);
+        bool UpdateToDoList(int id, string newName);
 	}
 }
