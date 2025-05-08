@@ -5,8 +5,10 @@ namespace ToDo.Infrastructure.Interfaces
 	public interface IToDoListRepository
 	{
 		bool CreateToDoList(ToDoList list);
-        bool DeleteToDoList(int id);
+        IEnumerable<ToDoList> GetToDoLists();
+        ToDoList? GetToDoList(int id);
         ToDoList? GetToDoListByName(string name);
-		IEnumerable<ToDoList> GetToDoLists();
+        bool DeleteToDoList(int id);
+        bool UpdateToDoList(ToDoList updatedList);
 	}
 }

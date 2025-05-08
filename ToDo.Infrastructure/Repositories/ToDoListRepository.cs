@@ -23,6 +23,16 @@ namespace ToDo.Infrastructure.Repositories
 			return true;
 		}
 
+		public IEnumerable<ToDoList> GetToDoLists()
+		{
+			return _context.ToDoLists.ToList();
+		}
+
+        public ToDoList? GetToDoList(int id)
+        {
+            return _context.ToDoLists.FirstOrDefault(x => x.Id == id);
+        }
+
         public ToDoList? GetToDoListByName(string name)
         {
             // Microsoft.Data.SqlClient.SqlException: 'Invalid object name 'ToDoLists'.'
@@ -31,11 +41,6 @@ namespace ToDo.Infrastructure.Repositories
 			// Update Database
             return _context.ToDoLists.FirstOrDefault(toDoList => toDoList.Name.Equals(name));
         }
-
-		public IEnumerable<ToDoList> GetToDoLists()
-		{
-			return _context.ToDoLists.ToList();
-		}
 
         public bool DeleteToDoList(int id) 
         {
@@ -46,6 +51,27 @@ namespace ToDo.Infrastructure.Repositories
             }
 
             _context.ToDoLists.Remove(toDoList);
+
+            try
+            {
+                _context.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool UpdateToDoList(ToDoList updatedList)
+        {
+            var existingList = _context.ToDoLists.FirstOrDefault(x => x.Id == updatedList.Id);
+            if (existingList == null)
+            {
+                return false;
+            }
+
+            existingList.Name = updatedList.Name;
 
             try
             {
